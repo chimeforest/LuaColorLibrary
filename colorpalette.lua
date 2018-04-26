@@ -1,5 +1,5 @@
 --[[
-  This is the color plalett class.
+  This is the color plalette class.
   It handles color palettes
 --]]
 

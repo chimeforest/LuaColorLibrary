@@ -4,6 +4,8 @@
 --]]
 
 Color = {}
+Color.X11 = {}		--TODO should I divide them up like this?	Can I put these into seperate files?
+Color.Munsell = {}
 
 ---- Functions
 --rounds an integer up if it is >= .5 otherwise rounds down.
@@ -39,6 +41,17 @@ end
 -- Adds a color from a hex value
 function Color.add(colorName, hexCode)
   Color[colorName] = Color.hex2rgb(hexCode)
+end
+
+-- Adds a color from a hex value to a lib
+function Color.add2Lib(colorName, hexCode, libname)
+	if libname == nil or type(Color[libname]) ~= 'table' or Color[libname] == nil then	--if libname is empty or Color[libname] is not a table or is nil, add color to base class.. for now
+  		Color[colorName] = Color.hex2rgb(hexCode)
+  		print("error")
+  	else
+  		Color[libname][colorName] = Color.hex2rgb(hexCode)
+  		print("we good")
+  	end
 end
 
 -- Converts a hex code to RGB
@@ -409,5 +422,32 @@ Color.add("LightSlateGray","778899")
 Color.add("SlateGray","708090")
 Color.add("DarkSlateGray","2F4F4F")
 Color.add("Black","000000")
+
+--Munsell 
+--color codes from: http://www.andrewwerth.com/aboutmunsell/
+
+----N
+Color.add("N10","ffffff")
+Color.add("N9","e9e8e7")
+Color.add("N8","cacaca")
+Color.add("N7","c0aba9")
+Color.add("N6","a3a2a2")
+Color.add("N5","888987")
+Color.add("N4","6b6c6b")
+Color.add("N3","525251")
+Color.add("N2","3b3a3a")
+Color.add("N1","222221")
+Color.add("N0","000000")
+
+----5R
+Color.add("R5 9/2","f4e2df")
+Color.add("R5 9/4","ffdad5")
+Color.add("R5 9/6","ffd3cb")
+
+Color.add("R5 8/2","d8c6c4")
+Color.add("R5 8/4","edc0bb")
+Color.add("R5 8/6","feb9b3")
+Color.add("R5 8/8","ffb1aa")
+Color.add("R5 8/10","ffa9a1")
 
 return Color
